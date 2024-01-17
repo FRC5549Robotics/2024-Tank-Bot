@@ -19,16 +19,16 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.Joystick;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+// import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+// import com.ctre
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  WPI_VictorSPX leftFront, rightFront, leftBack, rightBack;
+  // WPI_VictorSPX leftFront, rightFront, leftBack, rightBack;
   //public MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Compressor pcmCompressor;
@@ -42,14 +42,14 @@ public class Drivetrain extends SubsystemBase {
   private static Drivetrain instance;
 
   public Drivetrain(CommandXboxController controller) {
-    leftFront = new WPI_VictorSPX(Constants.LEFT_MOTOR1);
-    leftBack = new WPI_VictorSPX(Constants.LEFT_MOTOR2);
+    // leftFront = new WPI_VictorSPX(Constants.LEFT_MOTOR1);
+    // leftBack = new WPI_VictorSPX(Constants.LEFT_MOTOR2);
 
-    rightFront = new WPI_VictorSPX(Constants.RIGHT_MOTOR1);
-    rightBack = new WPI_VictorSPX(Constants.RIGHT_MOTOR2);
+    // rightFront = new WPI_VictorSPX(Constants.RIGHT_MOTOR1);
+    // rightBack = new WPI_VictorSPX(Constants.RIGHT_MOTOR2);
 
-    leftFront.setInverted(true);
-    leftBack.setInverted(true);
+    // leftFront.setInverted(true);
+    // leftBack.setInverted(true);
 
     m_controller = controller;
 /*
@@ -59,9 +59,9 @@ public class Drivetrain extends SubsystemBase {
     drive = new DifferentialDrive(rightGroup, leftGroup);
 */
     instance = this;
-    leftGroup = new MotorControllerGroup(leftFront, leftBack);
-    rightGroup = new MotorControllerGroup(rightFront, rightBack);
-    drive = new DifferentialDrive(rightGroup, leftGroup);
+    // leftGroup = new MotorControllerGroup(leftFront, leftBack);
+    // rightGroup = new MotorControllerGroup(rightFront, rightBack);
+    // drive = new DifferentialDrive(rightGroup, leftGroup);
 /*
     resetEncoders();
     rightBackE.setPositionConversionFactor(Constants.POSITION_TO_METERS);
