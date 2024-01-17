@@ -18,6 +18,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.Joystick;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 // import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 // import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -28,7 +29,7 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  // WPI_VictorSPX leftFront, rightFront, leftBack, rightBack;
+  WPI_VictorSPX leftFront, rightFront, leftBack, rightBack;
   //public MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Compressor pcmCompressor;
@@ -37,27 +38,26 @@ public class Drivetrain extends SubsystemBase {
   CommandXboxController m_controller;
 
   DoubleSolenoid rightGearShift, leftGearShift;
-  public MotorControllerGroup leftGroup, rightGroup;
 
   private static Drivetrain instance;
 
   public Drivetrain(CommandXboxController controller) {
-    // leftFront = new WPI_VictorSPX(Constants.LEFT_MOTOR1);
-    // leftBack = new WPI_VictorSPX(Constants.LEFT_MOTOR2);
+    leftFront = new WPI_VictorSPX(Constants.LEFT_MOTOR1);
+    leftBack = new WPI_VictorSPX(Constants.LEFT_MOTOR2);
 
-    // rightFront = new WPI_VictorSPX(Constants.RIGHT_MOTOR1);
-    // rightBack = new WPI_VictorSPX(Constants.RIGHT_MOTOR2);
+    rightFront = new WPI_VictorSPX(Constants.RIGHT_MOTOR1);
+    rightBack = new WPI_VictorSPX(Constants.RIGHT_MOTOR2);
 
-    // leftFront.setInverted(true);
-    // leftBack.setInverted(true);
+    leftFront.setInverted(true);
+    leftBack.setInverted(true);
+
+    leftBack.follow(leftFront);
+    rightBack.follow(rightFront);
 
     m_controller = controller;
-/*
-    leftGroup = new MotorControllerGroup(leftFront, leftBack);
-    rightGroup = new MotorControllerGroup(rightFront, rightBack);
 
-    drive = new DifferentialDrive(rightGroup, leftGroup);
-*/
+    drive = new DifferentialDrive(leftFront, rightFront);
+
     instance = this;
     // leftGroup = new MotorControllerGroup(leftFront, leftBack);
     // rightGroup = new MotorControllerGroup(rightFront, rightBack);
