@@ -29,7 +29,7 @@ public class TankDriverCommander extends Command {
   @Override
   public void execute() {
     // slide = Math.abs(m_axis1.getRawAxis(3));
-    m_drivetrain.arcadeDriveMethod(m_controller.getLeftY()*Constants.FORWARD_SCALING_FACTOR, m_controller.getRightX()*Constants.ROTATION_SCALING_FACTOR);/// , m_axis1.getRawAxis(3), m_axis2.getRawAxis(3));
+    m_drivetrain.arcadeDriveMethod(-m_controller.getLeftY()*Constants.FORWARD_SCALING_FACTOR, m_controller.getRightX()*Constants.ROTATION_SCALING_FACTOR);/// , m_axis1.getRawAxis(3), m_axis2.getRawAxis(3));
   }
 
   // Called once the command ends or is interrupted.

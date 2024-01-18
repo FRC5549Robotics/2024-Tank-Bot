@@ -67,9 +67,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     m_drivetrain.setDefaultCommand(new TankDriverCommander(m_drivetrain, m_controller));
-    shooterIntakeButton.onTrue(new InstantCommand(m_shooter::intake));
-    m_controller2.axisGreaterThan(Constants.SHOOT_TRIGGER, Constants.SHOOTER_DEADBAND).onTrue(new Shoot(m_shooter, m_controller)).onFalse(new InstantCommand(m_shooter::off));
-    m_controller2.axisGreaterThan(Constants.PIVOT_JOYSTICK, Constants.PIVOT_DEADBAND).or(m_controller2.axisLessThan(Constants.PIVOT_JOYSTICK, -Constants.PIVOT_DEADBAND)).onTrue(new PivotIntake(m_pivot, m_controller)).onFalse(new InstantCommand(m_pivot::off));
+    shooterIntakeButton.whileTrue(new InstantCommand(m_shooter::intake));
+    m_controller2.axisGreaterThan(Constants.SHOOT_TRIGGER, Constants.SHOOTER_DEADBAND).whileTrue(new Shoot(m_shooter, m_controller2));
+    shooterIntakeButton.onFalse(new InstantCommand(m_shooter::off));
+    m_controller2.axisGreaterThan(Constants.PIVOT_JOYSTICK, Constants.PIVOT_DEADBAND).or(m_controller2.axisLessThan(Constants.PIVOT_JOYSTICK, -Constants.PIVOT_DEADBAND)).onTrue(new PivotIntake(m_pivot, m_controller2)).onFalse(new InstantCommand(m_pivot::off));
     m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onTrue(new IntakeAnalog(m_intake, m_controller2));
     intakeShooterButton.onTrue(new InstantCommand(m_intake::shoot)).onFalse(new InstantCommand(m_intake::off));
     m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onFalse(new InstantCommand(m_intake::off));
