@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkMax;
@@ -21,6 +22,7 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   CANSparkFlex LeftMotor, RightMotor;
+  public boolean movement = false;
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -28,29 +30,33 @@ public class Shooter extends SubsystemBase {
     RightMotor = new CANSparkFlex(Constants.SHOOT_MOTOR_RIGHT, MotorType.kBrushless);
   }
 
-  public void triggerTest(){
-    System.out.println("it works");
-  }
-
-  public void triggerTestOff(){
-    System.out.println("it also works");
-  }
-
   public void shoot(double speed) {//make dependent on trigger
     LeftMotor.set(-speed*Constants.SHOOTER_SCALING_FACTOR);
     RightMotor.set(speed*Constants.SHOOTER_SCALING_FACTOR);
+<<<<<<< HEAD
   }
 
   public void intake() {
     triggerTest();
     LeftMotor.set(Constants.SHOOTER_INTAKE_SPEED);
     RightMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
+=======
+    movement = true;
+    System.out.println("shoot");
+  }
+
+  public void intake() {
+    LeftMotor.set(Constants.SHOOTER_INTAKE_SPEED);
+    RightMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
+    System.out.println("intake");
+>>>>>>> 1f8c9cca857ef1df25163e530256433dd0a241b0
   }
 
   public void off(){
     triggerTestOff();
     LeftMotor.set(0);
     RightMotor.set(0);
+    System.out.println("sadfkbsadfjk");
   }
 
   @Override

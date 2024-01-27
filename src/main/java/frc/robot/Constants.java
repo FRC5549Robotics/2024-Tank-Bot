@@ -25,8 +25,8 @@ public final class Constants {
     public static final int LEFT_MOTOR2 = 4;//2
 
     // Drivetrain Scaling Factors
-    public static final double FORWARD_SCALING_FACTOR = -0.75;
-    public static final double ROTATION_SCALING_FACTOR = -0.75;
+    public static final double FORWARD_SCALING_FACTOR = 1;
+    public static final double ROTATION_SCALING_FACTOR = 1;
 
     // Drivetrain Feedforward Values
     public static final double DRIVE_kS = 0.33049;
@@ -39,8 +39,6 @@ public final class Constants {
     public static final double DRIVE_kD = 0;
 
     // Joystick and Xbox Declaration
-    public static final int JOYSTICK_LEFT = 2;
-    public static final int JOYSTICK_RIGHT = 1;
     public static final int XBOX_CONTROLLER = 0;
 
     // Differential Drive Kinematics
@@ -52,16 +50,17 @@ public final class Constants {
     //shooter
     public static final int SHOOT_MOTOR_LEFT = 10;
     public static final int SHOOT_MOTOR_RIGHT = 11;
-    public static final int SHOOT_TRIGGER = 3;//check before use
+    public static final int SHOOT_TRIGGER = 3;
     public static final int SHOOTER_INTAKE_BUTTON = 1;
-    public static final double SHOOTER_DEADBAND = 0.05;
-    public static final double SHOOTER_SCALING_FACTOR = 0.8;
-    public static final double SHOOTER_INTAKE_SPEED = 0.7;
+    public static final double SHOOTER_DEADBAND = 0.1;
+    public static final double SHOOTER_SCALING_FACTOR = 1;
+    public static final double SHOOTER_INTAKE_SPEED = 0.75;
 
     //Intooter and Pivot
     public static final int LEFT_PIVOT_MOTOR = 12;
     public static final int RIGHT_PIVOT_MOTOR = 13;
     public static final int PIVOT_JOYSTICK = 1;
+<<<<<<< HEAD
     public static final double PIVOT_DEADBAND = 0.06;
     public static final double PIVOT_SCALING_FACTOR = 0.5;
     public static final int INTAKE_MOTOR = 14; 
@@ -76,3 +75,14 @@ public final class Constants {
     public static final int INDEXER_BUTTON = 3;
     public static final double INDEXER_SPEED = -0.8;
 }   
+=======
+    public static final double PIVOT_DEADBAND = 0.05;
+    public static final double PIVOT_SCALING_FACTOR = 0.2;
+    public static final int INTAKE_MOTOR = 13; 
+    public static final int INTAKE_TRIGGER = 2;
+    public static final double INTAKE_DEADBAND = 0.05;
+    public static final double INTAKE_SCALING_FACTOR = 1;
+    public static final int INTAKE_SHOOTER_BUTTON = 2;
+    public static final double INTAKE_OUTTAKE_SPEED = 1;
+}
+>>>>>>> 1f8c9cca857ef1df25163e530256433dd0a241b0
