@@ -37,16 +37,18 @@ public class Shooter extends SubsystemBase {
   }
 
   public void shoot(double speed) {//make dependent on trigger
-    LeftMotor.set(speed*Constants.SHOOTER_SCALING_FACTOR);
-    RightMotor.set(-speed*Constants.SHOOTER_SCALING_FACTOR);
+    LeftMotor.set(-speed*Constants.SHOOTER_SCALING_FACTOR);
+    RightMotor.set(speed*Constants.SHOOTER_SCALING_FACTOR);
   }
 
   public void intake() {
-    LeftMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
-    RightMotor.set(Constants.SHOOTER_INTAKE_SPEED);
+    triggerTest();
+    LeftMotor.set(Constants.SHOOTER_INTAKE_SPEED);
+    RightMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
   }
 
   public void off(){
+    triggerTestOff();
     LeftMotor.set(0);
     RightMotor.set(0);
   }

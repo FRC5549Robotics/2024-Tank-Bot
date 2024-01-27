@@ -28,6 +28,7 @@ public class Shoot extends Command {
   @Override
   public void execute() {
     m_shooter.shoot(m_controller.getRightTriggerAxis()*Constants.SHOOTER_SCALING_FACTOR);
+    System.out.println("command runs");
   }
 
   // Called once the command ends or is interrupted.

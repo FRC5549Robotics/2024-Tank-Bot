@@ -12,11 +12,13 @@ public class TankDriverCommander extends Command {
   /** Creates a new TankDrive. */
   private final Drivetrain m_drivetrain;
   private final CommandXboxController m_controller;
+  private final CommandXboxController m_controller2;
 
-  public TankDriverCommander(Drivetrain drivetrain, CommandXboxController xbox) {
+  public TankDriverCommander(Drivetrain drivetrain, CommandXboxController xbox, CommandXboxController xbox2) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
     m_controller = xbox;
+    m_controller2 = xbox2;
     addRequirements(drivetrain);
   }
 
@@ -29,7 +31,7 @@ public class TankDriverCommander extends Command {
   @Override
   public void execute() {
     // slide = Math.abs(m_axis1.getRawAxis(3));
-    m_drivetrain.arcadeDriveMethod(m_controller.getLeftY()*Constants.FORWARD_SCALING_FACTOR, m_controller.getRightX()*Constants.ROTATION_SCALING_FACTOR);/// , m_axis1.getRawAxis(3), m_axis2.getRawAxis(3));
+    m_drivetrain.arcadeDriveMethod(m_controller.getLeftY()*Constants.FORWARD_SCALING_FACTOR, -m_controller.getRightX()*Constants.ROTATION_SCALING_FACTOR);/// , m_axis1.getRawAxis(3), m_axis2.getRawAxis(3));
   }
 
   // Called once the command ends or is interrupted.

@@ -5,27 +5,31 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Pivot extends SubsystemBase {
-  /** Creates a new Pivot. */
-  CANSparkMax LeftPivotMotor, RightPivotMotor;
-  public Pivot() {
-    LeftPivotMotor = new CANSparkMax(Constants.LEFT_PIVOT_MOTOR, MotorType.kBrushless);  
-    RightPivotMotor = new CANSparkMax(Constants.RIGHT_PIVOT_MOTOR, MotorType.kBrushless);
+public class Indexer extends SubsystemBase {
+  /** Creates a new Indexer. */
+  CANSparkMax IndexerMotor;
+  public Indexer() {
+    IndexerMotor = new CANSparkMax(Constants.INDEXER_MOTOR, MotorType.kBrushless);
   }
 
-  public void pivot(double speed){
-    LeftPivotMotor.set(speed);
-    RightPivotMotor.set(-speed);
+  public void test(){
+    System.out.println("Buttons");
   }
+  public void index() {
+    IndexerMotor.set(Constants.INDEXER_SPEED);
+  }
+
+  public void shoot() {
+    IndexerMotor.set(-Constants.INDEXER_SPEED);
+  }
+
   public void off(){
-    LeftPivotMotor.set(0);
-    RightPivotMotor.set(0);
+    IndexerMotor.set(0);
   }
 
   @Override

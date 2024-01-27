@@ -59,14 +59,20 @@ public final class Constants {
     public static final double SHOOTER_INTAKE_SPEED = 0.7;
 
     //Intooter and Pivot
-    public static final int PIVOT_MOTOR = 12;
+    public static final int LEFT_PIVOT_MOTOR = 12;
+    public static final int RIGHT_PIVOT_MOTOR = 13;
     public static final int PIVOT_JOYSTICK = 1;
-    public static final double PIVOT_DEADBAND = 0.05;
+    public static final double PIVOT_DEADBAND = 0.06;
     public static final double PIVOT_SCALING_FACTOR = 0.5;
-    public static final int INTAKE_MOTOR = 13; 
+    public static final int INTAKE_MOTOR = 14; 
     public static final int INTAKE_TRIGGER = 2;
-    public static final double INTAKE_DEADBAND = 0.05;
-    public static final double INTAKE_SCALING_FACTOR = 0.5;
+    public static final double INTAKE_DEADBAND = 0.08;
+    public static final double INTAKE_SCALING_FACTOR = 1;
     public static final int INTAKE_SHOOTER_BUTTON = 2;
-    public static final double INTAKE_OUTTAKE_SPEED = 0.5;
-}
+    public static final double INTAKE_OUTTAKE_SPEED = 1;
+
+    //Indexer
+    public static final int INDEXER_MOTOR = 15;
+    public static final int INDEXER_BUTTON = 3;
+    public static final double INDEXER_SPEED = -0.8;
+}   

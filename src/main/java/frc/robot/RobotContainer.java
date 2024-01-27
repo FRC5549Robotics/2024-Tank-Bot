@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pivot;
 import frc.robot.commands.*;
@@ -40,12 +41,14 @@ public class RobotContainer {
   public final Shooter m_shooter = new Shooter();
   public final Pivot m_pivot = new Pivot();
   public final Intake m_intake = new Intake();
+  public final Indexer m_indexer = new Indexer();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   JoystickButton shooterIntakeButton = new JoystickButton(m_controller2.getHID(), Constants.SHOOTER_INTAKE_BUTTON);
   JoystickButton intakeShooterButton = new JoystickButton(m_controller2.getHID(), Constants.INTAKE_SHOOTER_BUTTON);
+  JoystickButton indexerButton = new JoystickButton(m_controller2.getHID(), Constants.INDEXER_BUTTON);
   public RobotContainer() {
     // Configure the trigger bindings
     configureButtonBindings();
@@ -66,13 +69,14 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureButtonBindings() {
-    m_drivetrain.setDefaultCommand(new TankDriverCommander(m_drivetrain, m_controller));
-    shooterIntakeButton.onTrue(new InstantCommand(m_shooter::intake));
-    m_controller2.axisGreaterThan(Constants.SHOOT_TRIGGER, Constants.SHOOTER_DEADBAND).onTrue(new Shoot(m_shooter, m_controller)).onFalse(new InstantCommand(m_shooter::off));
-    m_controller2.axisGreaterThan(Constants.PIVOT_JOYSTICK, Constants.PIVOT_DEADBAND).or(m_controller2.axisLessThan(Constants.PIVOT_JOYSTICK, -Constants.PIVOT_DEADBAND)).onTrue(new PivotIntake(m_pivot, m_controller)).onFalse(new InstantCommand(m_pivot::off));
-    m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onTrue(new IntakeAnalog(m_intake, m_controller2));
+    m_drivetrain.setDefaultCommand(new TankDriverCommander(m_drivetrain, m_controller, m_controller2));
+    shooterIntakeButton.onTrue(new InstantCommand(m_shooter::intake)).onFalse(new InstantCommand(m_shooter::off));
+    m_controller2.axisGreaterThan(Constants.SHOOT_TRIGGER, Constants.SHOOTER_DEADBAND).whileTrue(new Shoot(m_shooter, m_controller2));
+    m_controller2.axisGreaterThan(Constants.PIVOT_JOYSTICK, Constants.PIVOT_DEADBAND).or(m_controller2.axisLessThan(Constants.PIVOT_JOYSTICK, -Constants.PIVOT_DEADBAND)).onTrue(new PivotIntake(m_pivot, m_controller2)).onFalse(new InstantCommand(m_pivot::off));
+    m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onTrue(new IntakeAnalog(m_intake, m_controller2)).onFalse(new InstantCommand(m_intake::off));
     intakeShooterButton.onTrue(new InstantCommand(m_intake::shoot)).onFalse(new InstantCommand(m_intake::off));
-    m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onFalse(new InstantCommand(m_intake::off));
+    indexerButton.onTrue(new InstantCommand(m_indexer::index));
+    indexerButton.onFalse(new InstantCommand(m_indexer::off));
   }
 
   /**

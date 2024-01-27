@@ -16,16 +16,18 @@ public class Intake extends SubsystemBase {
   public Intake() {
     IntakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushless);
   }
-  public void intake(double speed) {//make dependent on trigger
+  public void intake(double speed) {
     IntakeMotor.set(speed);
     System.out.println("kind of works");
   }
 
   public void shoot() {
+    System.out.println("Shoot");
     IntakeMotor.set(-Constants.INTAKE_OUTTAKE_SPEED);
   }
 
   public void off(){
+    System.out.println("Off");
     IntakeMotor.set(0);
   }
   @Override
