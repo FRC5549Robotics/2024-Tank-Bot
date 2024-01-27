@@ -29,31 +29,21 @@ public class Shooter extends SubsystemBase {
     LeftMotor = new CANSparkFlex(Constants.SHOOT_MOTOR_LEFT, MotorType.kBrushless);
     RightMotor = new CANSparkFlex(Constants.SHOOT_MOTOR_RIGHT, MotorType.kBrushless);
   }
+  
+
 
   public void shoot(double speed) {//make dependent on trigger
     LeftMotor.set(-speed*Constants.SHOOTER_SCALING_FACTOR);
     RightMotor.set(speed*Constants.SHOOTER_SCALING_FACTOR);
-<<<<<<< HEAD
-  }
-
-  public void intake() {
-    triggerTest();
-    LeftMotor.set(Constants.SHOOTER_INTAKE_SPEED);
-    RightMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
-=======
-    movement = true;
-    System.out.println("shoot");
   }
 
   public void intake() {
     LeftMotor.set(Constants.SHOOTER_INTAKE_SPEED);
     RightMotor.set(-Constants.SHOOTER_INTAKE_SPEED);
-    System.out.println("intake");
->>>>>>> 1f8c9cca857ef1df25163e530256433dd0a241b0
+    System.out.println("shooter intake");
   }
 
   public void off(){
-    triggerTestOff();
     LeftMotor.set(0);
     RightMotor.set(0);
     System.out.println("sadfkbsadfjk");
