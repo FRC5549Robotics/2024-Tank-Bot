@@ -24,7 +24,7 @@ public class Indexer extends SubsystemBase {
     IndexerMotor.set(Constants.INDEXER_SPEED);
   }
 
-  public void shoot() {
+  public void reverse() {
     IndexerMotor.set(-Constants.INDEXER_SPEED);
   }
 

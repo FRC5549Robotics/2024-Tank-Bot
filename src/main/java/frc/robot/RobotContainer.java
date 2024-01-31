@@ -49,6 +49,7 @@ public class RobotContainer {
   JoystickButton shooterIntakeButton = new JoystickButton(m_controller2.getHID(), Constants.SHOOTER_INTAKE_BUTTON);
   JoystickButton intakeShooterButton = new JoystickButton(m_controller2.getHID(), Constants.INTAKE_SHOOTER_BUTTON);
   JoystickButton indexerButton = new JoystickButton(m_controller2.getHID(), Constants.INDEXER_BUTTON);
+  JoystickButton reverseIndexerButton = new JoystickButton(m_controller2.getHID(), Constants.REVERSE_INDEXER_BUTTON);
   public RobotContainer() {
     // Configure the trigger bindings
     configureButtonBindings();
@@ -75,8 +76,8 @@ public class RobotContainer {
     m_controller2.axisGreaterThan(Constants.PIVOT_JOYSTICK, Constants.PIVOT_DEADBAND).or(m_controller2.axisLessThan(Constants.PIVOT_JOYSTICK, -Constants.PIVOT_DEADBAND)).onTrue(new PivotIntake(m_pivot, m_controller2)).onFalse(new InstantCommand(m_pivot::off));
     m_controller2.axisGreaterThan(Constants.INTAKE_TRIGGER, Constants.INTAKE_DEADBAND).onTrue(new IntakeAnalog(m_intake, m_controller2)).onFalse(new InstantCommand(m_intake::off));
     intakeShooterButton.onTrue(new InstantCommand(m_intake::shoot)).onFalse(new InstantCommand(m_intake::off));
-    indexerButton.onTrue(new InstantCommand(m_indexer::index));
-    indexerButton.onFalse(new InstantCommand(m_indexer::off));
+    indexerButton.onTrue(new InstantCommand(m_indexer::index)).onFalse(new InstantCommand(m_indexer::off));
+    reverseIndexerButton.onTrue(new InstantCommand(m_indexer::reverse)).onFalse(new InstantCommand(m_indexer::off));
   }
 
   /**
